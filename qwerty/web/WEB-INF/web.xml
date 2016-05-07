@@ -8,9 +8,25 @@
         <servlet-name>BundleController</servlet-name>
         <servlet-class>controllers.BundleController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>controllers.RegisterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AjaxController</servlet-name>
+        <servlet-class>controllers.AjaxController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BundleController</servlet-name>
         <url-pattern>/BundleController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterController</servlet-name>
+        <url-pattern>/RegisterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjaxController</servlet-name>
+        <url-pattern>/AjaxController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
