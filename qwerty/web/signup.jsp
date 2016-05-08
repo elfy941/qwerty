@@ -4,6 +4,7 @@
     Author     : victor
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@page import="java.util.ResourceBundle"%>
@@ -21,6 +22,8 @@
         <script src="js/register.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="css/signup.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">        
+        <link rel="stylesheet" href="css/freelancer.css" type="text/css"> 
     </head>
 
     <body class="back">    
@@ -50,8 +53,37 @@
                             <a class="page-scroll" href="">${applicationScope.bundle.getString("portofolio")}</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="">${applicationScope.bundle.getString("contact")}</a>
+                            <c:if test="${sessionScope.company != null}">
+                                <div class="dropdown">
+                                    <button class="dropbtn">${applicationScope.bundle.getString("profile")}</button>
+                                    <div class="dropdown-content">
+                                        <a href="#">Company Details</a>
+                                        <a href="#">Link 2</a>
+                                        <a href="http://localhost:8080/qwerty/LogOutController">${applicationScope.bundle.getString("logout")}</a>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </li>                        
+                        <li>
+                            <c:if test="${sessionScope.user != null}">
+                                <div class="dropdown">
+                                    <button class="dropbtn">${applicationScope.bundle.getString("profile")}</button>
+                                    <div class="dropdown-content">
+                                        <a href="#">User Details</a>
+                                        <a href="#">Link 2</a>
+                                        <a href="http://localhost:8080/qwerty/LogOutController">${applicationScope.bundle.getString("logout")}</a>
+                                    </div>
+                                </div>
+                            </c:if>
                         </li>
+                        <c:if test="${sessionScope.company == null && sessionScope.user == null}">
+                            <li>
+                                <a class="page-scroll" href="login.jsp">${applicationScope.bundle.getString("login")}</a>
+                            </li>
+                            <li>
+                                <a class="page-scroll" href="signup.jsp">${applicationScope.bundle.getString("register")}</a>
+                            </li>
+                        </c:if>
                         <li>
                             <form action="BundleController">
                                 <input class="btn btn-link " type="submit" value="RO" name="bundle">
@@ -106,6 +138,18 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="${applicationScope.bundle.getString("confirm_password")}" name="repass" required="true">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="comment">Give us some informations:</label>
+                                            <textarea class="form-control" rows="5" id="additionalInfo" name="description"></textarea>
+                                        </div>
+                                        <div style="position:relative;" class="form-group">
+                                            <a class='btn btn-primary' href='javascript:;'>
+                                                Choose File...
+                                                <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="file_source" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
+                                            </a>
+                                            &nbsp;
+                                            <span class='label label-info' id="upload-file-info" name="fileplace"></span>
                                         </div>
                                         <div class="form-group">
                                             <div class="checkbox">

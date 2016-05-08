@@ -4,6 +4,7 @@
     Author     : elfy
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ResourceBundle"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
@@ -11,18 +12,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width , initial-scale=1.0">      
         <title>First Page</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-        
+
         <!-- Custom Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
 
         <!-- Plugin CSS -->
         <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="css/creative.css" type="text/css">
+        <link rel="stylesheet" href="css/index.css" type="text/css"> 
+        <link rel="stylesheet" href="css/freelancer.css" type="text/css"> 
 
     </head>
     <body id="page-top">
@@ -30,6 +33,8 @@
           Navigation bar
         -->
 
+
+        <!--menu-->
         <nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -56,11 +61,38 @@
                             <a class="page-scroll" href="#portfolio">${applicationScope.bundle.getString("portofolio")}</a>
                         </li>
                         <li>
-                            <a class="page-scroll" href="#contact">${applicationScope.bundle.getString("contact")}</a>
-                        </li>
+                            <c:if test="${sessionScope.company != null}">
+                                <div class="dropdown">
+                                    <button class="dropbtn">${applicationScope.bundle.getString("profile")}</button>
+                                    <div class="dropdown-content">
+                                        <a href="#">Company Details</a>
+                                        <a href="#">Link 2</a>
+                                        <a href="http://localhost:8080/qwerty/LogOutController">${applicationScope.bundle.getString("logout")}</a>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </li>                        
                         <li>
-                            <a class="page-scroll" href="signup.jsp">${applicationScope.bundle.getString("register")}</a>
-                        </li>
+                            <c:if test="${sessionScope.user != null}">
+                                <div class="dropdown">
+                                    <button class="dropbtn">${applicationScope.bundle.getString("profile")}</button>
+                                    <div class="dropdown-content">
+                                        <a href="#">User Details</a>
+                                        <a href="#">Link 2</a>
+                                        <a href="http://localhost:8080/qwerty/LogOutController">${applicationScope.bundle.getString("logout")}</a>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </li>   
+                        <c:if test="${sessionScope.company == null && sessionScope.user == null}">
+                            <li>
+                                <a class="page-scroll" href="login.jsp">${applicationScope.bundle.getString("login")}</a>
+                            </li>
+                            <li>
+                                <a class="page-scroll" href="signup.jsp">${applicationScope.bundle.getString("register")}</a>
+                            </li>
+                        </c:if>
+
                         <li>
                             <form action="BundleController">
                                 <input class="btn btn-link " type="submit" value="RO" name="bundle">
@@ -73,6 +105,8 @@
             </div>            
         </nav>
 
+        <!--menu-->               
+
         <header>
             <div class="header-content">
                 <div class="header-content-inner">
@@ -83,6 +117,318 @@
                 </div>
             </div>
         </header>
+
+
+        <!-- Portfolio Grid Section -->
+        <section id="portfolio">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2>Portfolio</h2>
+                        <hr class="star-primary">
+                    </div>
+                </div>
+                <div class="row">
+                    <!--insert for loop here--> 
+                    <div class="col-sm-4 portfolio-item">
+                        <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <i class="fa fa-search-plus fa-3x"></i>
+                                </div>
+                            </div>
+                            <img src="img/cabin.png" class="img-responsive" alt="">
+                        </a>
+                    </div>
+                    <div class="col-sm-4 portfolio-item">
+                        <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <i class="fa fa-search-plus fa-3x"></i>
+                                </div>
+                            </div>
+                            <img src="img/cake.png" class="img-responsive" alt="">
+                        </a>
+                    </div>
+                    <div class="col-sm-4 portfolio-item">
+                        <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <i class="fa fa-search-plus fa-3x"></i>
+                                </div>
+                            </div>
+                            <img src="img/circus.png" class="img-responsive" alt="">
+                        </a>
+                    </div>
+                    <div class="col-sm-4 portfolio-item">
+                        <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <i class="fa fa-search-plus fa-3x"></i>
+                                </div>
+                            </div>
+                            <img src="img/game.png" class="img-responsive" alt="">
+                        </a>
+                    </div>
+                    <div class="col-sm-4 portfolio-item">
+                        <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <i class="fa fa-search-plus fa-3x"></i>
+                                </div>
+                            </div>
+                            <img src="img/safe.png" class="img-responsive" alt="">
+                        </a>
+                    </div>
+                    <div class="col-sm-4 portfolio-item">
+                        <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                            <div class="caption">
+                                <div class="caption-content">
+                                    <i class="fa fa-search-plus fa-3x"></i>
+                                </div>
+                            </div>
+                            <img src="img/submarine.png" class="img-responsive" alt="">
+                        </a>
+                    </div>
+                    <!--end of for loop-->
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+        <div class="scroll-top page-scroll visible-xs visible-sm">
+            <a class="btn btn-primary" href="#page-top">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </div>
+
+        <!-- Portfolio Modals -->
+        <!--for loop again-->
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <h2>Project Title</h2>
+                                <hr class="star-primary">
+                                <img src="img/cabin.png" class="img-responsive img-centered" alt="">
+                                <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+                                <ul class="list-inline item-details">
+                                    <li>Client:
+                                        <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                        </strong>
+                                    </li>
+                                    <li>Date:
+                                        <strong><a href="http://startbootstrap.com">April 2014</a>
+                                        </strong>
+                                    </li>
+                                    <li>Service:
+                                        <strong><a href="http://startbootstrap.com">Web Development</a>
+                                        </strong>
+                                    </li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <h2>Project Title</h2>
+                                <hr class="star-primary">
+                                <img src="img/cake.png" class="img-responsive img-centered" alt="">
+                                <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+                                <ul class="list-inline item-details">
+                                    <li>Client:
+                                        <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                        </strong>
+                                    </li>
+                                    <li>Date:
+                                        <strong><a href="http://startbootstrap.com">April 2014</a>
+                                        </strong>
+                                    </li>
+                                    <li>Service:
+                                        <strong><a href="http://startbootstrap.com">Web Development</a>
+                                        </strong>
+                                    </li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <h2>Project Title</h2>
+                                <hr class="star-primary">
+                                <img src="img/circus.png" class="img-responsive img-centered" alt="">
+                                <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+                                <ul class="list-inline item-details">
+                                    <li>Client:
+                                        <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                        </strong>
+                                    </li>
+                                    <li>Date:
+                                        <strong><a href="http://startbootstrap.com">April 2014</a>
+                                        </strong>
+                                    </li>
+                                    <li>Service:
+                                        <strong><a href="http://startbootstrap.com">Web Development</a>
+                                        </strong>
+                                    </li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <h2>Project Title</h2>
+                                <hr class="star-primary">
+                                <img src="img/game.png" class="img-responsive img-centered" alt="">
+                                <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+                                <ul class="list-inline item-details">
+                                    <li>Client:
+                                        <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                        </strong>
+                                    </li>
+                                    <li>Date:
+                                        <strong><a href="http://startbootstrap.com">April 2014</a>
+                                        </strong>
+                                    </li>
+                                    <li>Service:
+                                        <strong><a href="http://startbootstrap.com">Web Development</a>
+                                        </strong>
+                                    </li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <h2>Project Title</h2>
+                                <hr class="star-primary">
+                                <img src="img/safe.png" class="img-responsive img-centered" alt="">
+                                <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+                                <ul class="list-inline item-details">
+                                    <li>Client:
+                                        <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                        </strong>
+                                    </li>
+                                    <li>Date:
+                                        <strong><a href="http://startbootstrap.com">April 2014</a>
+                                        </strong>
+                                    </li>
+                                    <li>Service:
+                                        <strong><a href="http://startbootstrap.com">Web Development</a>
+                                        </strong>
+                                    </li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <div class="modal-body">
+                                <h2>Project Title</h2>
+                                <hr class="star-primary">
+                                <img src="img/submarine.png" class="img-responsive img-centered" alt="">
+                                <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+                                <ul class="list-inline item-details">
+                                    <li>Client:
+                                        <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
+                                        </strong>
+                                    </li>
+                                    <li>Date:
+                                        <strong><a href="http://startbootstrap.com">April 2014</a>
+                                        </strong>
+                                    </li>
+                                    <li>Service:
+                                        <strong><a href="http://startbootstrap.com">Web Development</a>
+                                        </strong>
+                                    </li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end of foor loop-->
+
+
         <!-- footer -->
 
         <section id="contact">
@@ -109,6 +455,14 @@
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src="js/freelancer.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/classie.js"></script>
+        <script src="js/cbpAnimatedHeader.js"></script>
+        <script src="js/jqBootstrapValidation.js"></script>
+
+
     </body>
 </html>    
 

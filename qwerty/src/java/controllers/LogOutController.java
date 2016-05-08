@@ -5,13 +5,8 @@
  */
 package controllers;
 
-import dao.CompanyDAO;
-import dao.UserDAO;
-import entity.Company;
-import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,13 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author victor
  */
-public class RegisterController extends HttpServlet {
-
-    private RequestDispatcher rd;
-    @EJB
-    private UserDAO udao;
-    @EJB
-    private CompanyDAO cdao;
+public class LogOutController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,49 +31,12 @@ public class RegisterController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (request.getParameter("companyName") != null) {
-            String companyName = (String) request.getParameter("companyName");
-            String userName = (String) request.getParameter("companyUser");
-            String email = (String) request.getParameter("companyMail");
-            String phone = (String) request.getParameter("companyPhone");
-            String password = (String) request.getParameter("password");
-            String description = request.getParameter("description");
-            String imageUrl = request.getParameter("file_source");
+        request.getSession().removeAttribute("user");
+        request.getSession().removeAttribute("company");
 
-            Company c = new Company();
-            c.setCompanyName(companyName);
-            c.setUserName(userName);
-            c.setEmailAddress(email);
-            c.setPhoneNumber(phone);
-            c.setPassword(password);
-            c.setDescription(description);
-            c.setImage(imageUrl);
-
-            cdao.addCompany(c);            
-        } else {
-            String firstName = (String) request.getParameter("firstName");
-            String lastName = (String) request.getParameter("lastName");
-            String gender = (String) request.getParameter("optradio");
-            String userName = (String) request.getParameter("user_name");
-            String email = (String) request.getParameter("email_address");
-            String password = (String) request.getParameter("parola");
-
-            User u = new User();
-            u.setFirstName(firstName);
-            u.setLastName(lastName);
-            u.setGender(gender);
-            u.setUserName(userName);
-            u.setEmailAddress(email);
-            u.setPassword(password);
-
-            udao.addUser(u);
-
-            
-
-        }
-        
-        rd = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

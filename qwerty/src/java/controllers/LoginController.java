@@ -7,13 +7,11 @@ package controllers;
 
 import dao.CompanyDAO;
 import dao.UserDAO;
-import entity.Company;
-import entity.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,13 +20,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author victor
  */
-public class RegisterController extends HttpServlet {
+public class LoginController extends HttpServlet {
 
-    private RequestDispatcher rd;
     @EJB
     private UserDAO udao;
     @EJB
     private CompanyDAO cdao;
+    private RequestDispatcher rd;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,49 +40,35 @@ public class RegisterController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (request.getParameter("companyName") != null) {
-            String companyName = (String) request.getParameter("companyName");
-            String userName = (String) request.getParameter("companyUser");
-            String email = (String) request.getParameter("companyMail");
-            String phone = (String) request.getParameter("companyPhone");
-            String password = (String) request.getParameter("password");
-            String description = request.getParameter("description");
-            String imageUrl = request.getParameter("file_source");
+        String username = request.getParameter("user");
+        String password = request.getParameter("password");
 
-            Company c = new Company();
-            c.setCompanyName(companyName);
-            c.setUserName(userName);
-            c.setEmailAddress(email);
-            c.setPhoneNumber(phone);
-            c.setPassword(password);
-            c.setDescription(description);
-            c.setImage(imageUrl);
+        if (udao.loginOk(username, password)) {
 
-            cdao.addCompany(c);            
+            if (request.getParameter("remember") != null) {
+                //here we should add cookie functionality
+            } else {
+                request.getSession().setAttribute("user", username);
+            }
+
+            rd = request.getRequestDispatcher("index.jsp");
+        } else if (cdao.loginOk(username, password)) {
+
+            if (request.getParameter("remember") != null) {
+                //cookies here also
+            } else {
+                request.getSession().setAttribute("company", username);
+            }
+            rd = request.getRequestDispatcher("index.jsp");
+
         } else {
-            String firstName = (String) request.getParameter("firstName");
-            String lastName = (String) request.getParameter("lastName");
-            String gender = (String) request.getParameter("optradio");
-            String userName = (String) request.getParameter("user_name");
-            String email = (String) request.getParameter("email_address");
-            String password = (String) request.getParameter("parola");
-
-            User u = new User();
-            u.setFirstName(firstName);
-            u.setLastName(lastName);
-            u.setGender(gender);
-            u.setUserName(userName);
-            u.setEmailAddress(email);
-            u.setPassword(password);
-
-            udao.addUser(u);
-
-            
-
+            String ERROR = "Username or password are not valid";
+            request.setAttribute("ERROR", ERROR);
+            rd = request.getRequestDispatcher("login.jsp");
         }
-        
-        rd = request.getRequestDispatcher("index.jsp");
+
         rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
