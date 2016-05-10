@@ -6,6 +6,7 @@
 package dao;
 
 import entity.User;
+import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -52,6 +53,10 @@ public class UserDAO {
             }
         }
         return false;
+    }
+    
+    public List<User> returnAllUsers() {
+        return em.createNamedQuery("User.findAll").getResultList();
     }
 
 }

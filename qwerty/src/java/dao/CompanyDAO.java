@@ -6,9 +6,8 @@
 package dao;
 
 import entity.Company;
-import javax.ejb.LocalBean;
+import java.util.List;
 import javax.ejb.Stateful;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -57,6 +56,10 @@ public class CompanyDAO {
             }
         }
         return false;
+    }
+    
+    public List<Company> returnAllCompanies() {
+        return em.createNamedQuery("Company.findAll").getResultList();
     }
 
 }

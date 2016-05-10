@@ -11,6 +11,7 @@ import entity.Company;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,6 +35,8 @@ public class RegisterController extends HttpServlet {
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
+     *  
+     * 
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -60,7 +63,12 @@ public class RegisterController extends HttpServlet {
             c.setDescription(description);
             c.setImage(imageUrl);
 
-            cdao.addCompany(c);            
+            cdao.addCompany(c);
+            List<Company> tmp = (List<Company>) request.getServletContext().getAttribute("companies");
+            request.removeAttribute("companies");
+            tmp.add(c);
+            request.getServletContext().setAttribute("companies", tmp);
+            
         } else {
             String firstName = (String) request.getParameter("firstName");
             String lastName = (String) request.getParameter("lastName");
@@ -86,7 +94,7 @@ public class RegisterController extends HttpServlet {
         rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
