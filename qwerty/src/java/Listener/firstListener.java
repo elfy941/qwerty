@@ -5,7 +5,14 @@
  */
 package Listener;
 
+import dao.CompanyDAO;
+import dao.UserDAO;
+import entity.Company;
+import entity.User;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -15,10 +22,24 @@ import javax.servlet.ServletContextListener;
  * @author elfy
  */
 public class firstListener implements ServletContextListener {
-
+    
+    
+    @Inject
+    private CompanyDAO cdao;
+    @Inject 
+    private UserDAO udao;
+    
     private ResourceBundle bundle;
-    private ServletContext context;
-
+    private ServletContext context;    
+    
+    
+    /**
+     * The method initialise all the necesary components before the application starts.
+     *  -initializing the bundle
+     *  -retreving from the database all the companies and users
+     * 
+     * @param sce 
+     */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         bundle = ResourceBundle.getBundle("bundles.BundleEN");
@@ -26,6 +47,14 @@ public class firstListener implements ServletContextListener {
         if (bundle != null) {
             context.setAttribute("bundle", bundle);
         }
+        
+        List<Company> companyList = cdao.returnAllCompanies();
+        context.setAttribute("companies", companyList);
+        
+        List<User> userList = udao.returnAllUsers();
+        context.setAttribute("users", userList);
+        
+        
     }
 
     @Override
