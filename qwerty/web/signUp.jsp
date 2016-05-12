@@ -1,101 +1,19 @@
 <%-- 
-    Document   : signup
-    Created on : May 7, 2016, 2:22:00 PM
+    Document   : signUp
+    Created on : May 12, 2016, 11:53:11 PM
     Author     : victor
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%@page import="java.util.ResourceBundle"%>
-
-
-<html>
-    <head>
-        <meta charset="utf-8">
-        <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-        <title>Sign up</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">	
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-        <script src="js/register.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<%@taglib tagdir="/WEB-INF/tags" prefix="tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<tags:menutag>
+    <jsp:attribute name="header">
         <link rel="stylesheet" type="text/css" href="css/signup.css">
-        <link rel="stylesheet" type="text/css" href="css/index.css">        
-        <link rel="stylesheet" href="css/freelancer.css" type="text/css"> 
-    </head>
-
-    <body class="back">    
-        <nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand page-scroll" href="index.jsp">${applicationScope.bundle.getString("home")}</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a class="page-scroll" href="">${applicationScope.bundle.getString("about")}</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="">${applicationScope.bundle.getString("services")}</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="">${applicationScope.bundle.getString("portofolio")}</a>
-                        </li>
-                        <li>
-                            <c:if test="${sessionScope.company != null}">
-                                <div class="dropdown">
-                                    <button class="dropbtn">${applicationScope.bundle.getString("profile")}</button>
-                                    <div class="dropdown-content">
-                                        <a href="#">Company Details</a>
-                                        <a href="#">Link 2</a>
-                                        <a href="http://localhost:8080/qwerty/LogOutController">${applicationScope.bundle.getString("logout")}</a>
-                                    </div>
-                                </div>
-                            </c:if>
-                        </li>                        
-                        <li>
-                            <c:if test="${sessionScope.user != null}">
-                                <div class="dropdown">
-                                    <button class="dropbtn">${applicationScope.bundle.getString("profile")}</button>
-                                    <div class="dropdown-content">
-                                        <a href="#">User Details</a>
-                                        <a href="#">Link 2</a>
-                                        <a href="http://localhost:8080/qwerty/LogOutController">${applicationScope.bundle.getString("logout")}</a>
-                                    </div>
-                                </div>
-                            </c:if>
-                        </li>
-                        <c:if test="${sessionScope.company == null && sessionScope.user == null}">
-                            <li>
-                                <a class="page-scroll" href="login.jsp">${applicationScope.bundle.getString("login")}</a>
-                            </li>
-                            <li>
-                                <a class="page-scroll" href="signup.jsp">${applicationScope.bundle.getString("register")}</a>
-                            </li>
-                        </c:if>
-                        <li>
-                            <form action="BundleController">
-                                <input class="btn btn-link " type="submit" value="RO" name="bundle">
-                                <input class="btn btn-link " type="submit" value="ENG" name="bundle">
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>            
-        </nav>
-
+        <script src="js/register.js"></script>
+    </jsp:attribute>
+    <jsp:attribute name="content">
         <div class="container login">
             <div class="login-signup">
                 <div class="row">
@@ -105,9 +23,7 @@
                             <li role="presentation" class="col-sm-6"><a href="#user" aria-controls="user" role="tab" data-toggle="tab">${applicationScope.bundle.getString("user")}</a></li>
                         </ul>
                     </div>
-
                 </div>
-
 
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="company">
@@ -245,5 +161,5 @@
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </jsp:attribute>
+</tags:menutag>

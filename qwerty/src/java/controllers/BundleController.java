@@ -22,8 +22,7 @@ public class BundleController extends HttpServlet {
     private ResourceBundle bundle ;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String x = request.getRequestURL().toString();
+            throws ServletException, IOException {        
        switch(request.getParameter("bundle")){
            case "RO" :
                request.getServletContext().removeAttribute("bundle");

@@ -51,7 +51,7 @@ public class LoginController extends HttpServlet {
                 request.getSession().setAttribute("user", username);
             }
 
-            rd = request.getRequestDispatcher("index.jsp");
+            rd = request.getRequestDispatcher("user.jsp");
         } else if (cdao.loginOk(username, password)) {
 
             if (request.getParameter("remember") != null) {
@@ -59,7 +59,7 @@ public class LoginController extends HttpServlet {
             } else {
                 request.getSession().setAttribute("company", username);
             }
-            rd = request.getRequestDispatcher("index.jsp");
+            rd = request.getRequestDispatcher("company.jsp");
 
         } else {
             String ERROR = "Username or password are not valid";
