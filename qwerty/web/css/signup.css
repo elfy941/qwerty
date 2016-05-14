@@ -8,8 +8,8 @@ and open the template in the editor.
     Author     : victor
 */
 .login{
-    margin-left: 100px;
-    margin-top: 100px;
+    padding-left: 100px;
+    margin-left: -100px;
 }
 
 .back{
@@ -79,45 +79,10 @@ article[role="login"] p {
   padding: 5px 15px;
 }
 
-.nav-tab-holder {
-  padding: 0 0 0 30px;
-  float: right;
-}
 
-.nav-tab-holder .nav-tabs {
-  border: 0;
-  float: none;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-}
-
-.nav-tab-holder .nav-tabs > li {
-  margin-bottom: -3px;
-  text-align: center;
-  padding: 0;
-  display: table-cell;
-  float: none;
-  padding: 0;
-}
-
-.nav-tab-holder .nav-tabs > li > a {
-  background: #d9d9d9;
-  color: #6c6c6c;
-  margin: 0;
-  font-size: 18px;
-  font-weight: 300;
-}
-
-.nav-tab-holder .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-  color: #FFF;
-  background-color: #23bab5;
-  border: 0;
-  border-radius: 0;
-}
 
 .mobile-pull {
-  float: right;
+  float: center;
 }
 
 article[role="manufacturer"] {
@@ -131,7 +96,7 @@ article[role="manufacturer"] {
 article[role="manufacturer"] header {
   background: #23bab5;
   color: #fff;
-  padding: 10px;
+  /*padding: 10px;*/
   font-size: 18px;
   font-weight: 300;
 }
@@ -140,7 +105,7 @@ article[role="manufacturer"] h1 {
   font-size: 26px;
   font-weight: 300;
   border-bottom: 1px solid #f2f2f2;
-  padding: 25px 15px;
+  /*padding: 25px 15px;*/
 }
 
 article[role="manufacturer"] ul {
@@ -150,7 +115,7 @@ article[role="manufacturer"] ul {
 article[role="manufacturer"] ul li {
   font-size: 16px;
   border-bottom: 1px solid #eaeaea;
-  padding: 20px 15px;
+  /*padding: 20px 15px;*/
   color:#404040;
 }
 
@@ -167,20 +132,4 @@ article[role="manufacturer"] ul li i {
     float: none;
   }
 
-  .nav-tab-holder {
-    float: none;
-    overflow: hidden;
-  }
-
-  .nav-tabs > li > a {
-    font-size: 13px;
-    font-weight: 600;
-    padding: 10px 5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .nav-tabs > li {
-    width: 50%;
-  }
 }

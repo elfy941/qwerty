@@ -11,6 +11,7 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import javax.persistence.Query;
 
 /**
  *
@@ -39,7 +40,9 @@ public class UserDAO {
     }
 
     public boolean sameEmail(String email) {
-        return em.createNamedQuery("User.findByEmailAddress").getResultList().isEmpty();
+        Query sameMail = em.createNamedQuery("User.findByEmailAddress");
+        sameMail.setParameter("emailAddress", email);
+        return !sameMail.getResultList().isEmpty();
     }
 
     public boolean loginOk(String username, String password) {
