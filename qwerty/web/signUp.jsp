@@ -11,10 +11,11 @@
 <tags:menutag>
     <jsp:attribute name="header">
         <link rel="stylesheet" type="text/css" href="css/signup.css">
+        <link rel="stylesheet" type="text/css" href="css/freelancer.css">
         <script src="js/register.js"></script>
     </jsp:attribute>
     <jsp:attribute name="content">
-        <div class="container login">
+        <div class="container">
             <div class="login-signup">
                 <div class="row">
                     <div class="col-sm-6 nav-tab-holder">
@@ -36,7 +37,7 @@
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="${applicationScope.bundle.getString("company_name")}" name="companyName" onblur="nameCompany(this.value)"
                                                    required="true" >
-                                            <nav id="nameComp" style="color: red"></nav>
+                                            <nav id="nameComp" style="color: red"></nav>    
                                         </div>
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="${applicationScope.bundle.getString("user_name")}" name="companyUser" onblur="companyData(this.value)" required="true">
@@ -132,6 +133,14 @@
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="${applicationScope.bundle.getString("confirm_password")}"
                                                    required="true">
+                                        </div>
+                                        <div style="position:relative;" class="form-group">
+                                            <a class='btn btn-primary' href='javascript:;'>
+                                                Choose File...
+                                                <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="userImage" size="40"  onchange='$("#upload-file").html($(this).val());'>
+                                            </a>
+                                            &nbsp;
+                                            <span class='label label-info' id="upload-file" name="fileplace"></span>
                                         </div>
                                         <div class="form-group">
                                             <div class="checkbox">

@@ -5,11 +5,12 @@
  */
 package controllers;
 
-import dao.CompanyDAO;
 import dao.UserDAO;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,13 +20,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author victor
  */
-public class AjaxController extends HttpServlet {
-
+public class UserPassword extends HttpServlet {
+    
+    
     @EJB
     private UserDAO udao;
-    @EJB
-    private CompanyDAO cdao;
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,37 +36,27 @@ public class AjaxController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        if (request.getParameter("user_name") != null) {
-            if (udao.getUser(request.getParameter("user_name")) != null) {
-                response.getWriter().write("The username is already in use");
-            }
+        
+        request.removeAttribute("message");
+        request.removeAttribute("error");
+        
+        String password = request.getParameter("newpass");
+        String repass = request.getParameter("repeatpass");
+        User u = (User) request.getSession().getAttribute("user");
+        
+        if(password.equals(repass)){
+          u.setPassword(password);
+          udao.editUser(u);
+          String message = "The password had been changed";
+          request.setAttribute("message", message);
+        }else{
+            String ERROR = "The password do not match";
+            request.setAttribute("error", ERROR);
         }
         
-        if (request.getParameter("companyUser") != null ){
-            if (cdao.getCompany(request.getParameter("companyUser")) != null){
-                response.getWriter().write("The username is already in use");
-            }            
-        } 
+        RequestDispatcher rd = request.getRequestDispatcher("userProfile.jsp");
+        rd.forward(request, response);
         
-        if (request.getParameter("email_address") != null) {
-            if(udao.sameEmail(request.getParameter("email_address")) == true ) {
-                response.getWriter().write("The e-mail address is already in use");
-            }
-        }
-        
-        if (request.getParameter("companyMail") != null) {
-            if(cdao.sameEmail(request.getParameter("companyMail")) == true ) {
-                response.getWriter().write("The e-mail address is already in use");
-            }
-        }
-        
-        if (request.getParameter("companyName") != null) {
-            if(cdao.sameName(request.getParameter("companyName")) == true ) {
-                response.getWriter().write("The name of company is already in use");
-            }
-        }                
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

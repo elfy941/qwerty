@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -31,8 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Company.findByEmailAddress", query = "SELECT c FROM Company c WHERE c.emailAddress = :emailAddress"),
     @NamedQuery(name = "Company.findByPhoneNumber", query = "SELECT c FROM Company c WHERE c.phoneNumber = :phoneNumber"),
     @NamedQuery(name = "Company.findByPassword", query = "SELECT c FROM Company c WHERE c.password = :password"),
-    @NamedQuery(name = "Company.findByImage", query = "SELECT c FROM Company c WHERE c.image = :image"),
-    @NamedQuery(name = "Company.findByDescription", query = "SELECT c FROM Company c WHERE c.description = :description")})
+    @NamedQuery(name = "Company.findByImage", query = "SELECT c FROM Company c WHERE c.image = :image")})
 public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,7 +57,8 @@ public class Company implements Serializable {
     @Size(max = 45)
     @Column(name = "image")
     private String image;
-    @Size(max = 45)
+    @Lob
+    @Size(max = 2147483647)
     @Column(name = "Description")
     private String description;
 

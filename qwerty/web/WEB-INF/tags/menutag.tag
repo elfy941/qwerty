@@ -9,7 +9,7 @@
         <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
         <link href="css/ct-navbar.css" rel="stylesheet" />
         <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">       
-        
+
         <!--Place common js here-->
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>        
@@ -41,13 +41,13 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand navbar-brand-logo" href="index.jsp">
+<!--                            <a class="navbar-brand navbar-brand-logo" href="index.jsp">
                                 <div class="logo">
-                                    <img src="https://s3.amazonaws.com/creativetim_bucket/new_logo.png">
+                                    <img src="img/logo.gif">
 
                                 </div>
-                                <div class="brand"> Creative Tim </div>
-                            </a>
+                                <div class="brand"> Qwerty </div>
+                            </a>-->
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -68,7 +68,32 @@
                                         </a>
                                     </li>
                                 </c:if>
-                                <c:if test="${sessionScope.user != null || sessionScope.company != null}">
+                                <c:if test="${sessionScope.user != null }">
+                                    <li>
+                                        <a href="#">
+                                            <i class="pe-7s-mail-open">
+                                                <span class="label">23</span>
+                                            </i>
+                                            <p>Messages</p>
+                                        </a>
+                                    </li> 
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="pe-7s-user"></i>
+                                            <p>Account</p>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="userProfile.jsp">Profile</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something</a></li>
+                                            <li><a href="#">Another action</a></li>
+                                            <li><a href="#">Something</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="http://localhost:8080/qwerty/LogOutController">Log Out</a></li>
+                                        </ul>
+                                    </li>
+                                </c:if>
+                                <c:if test="${sessionScope.company != null}">
                                     <li>
                                         <a href="#">
                                             <i class="pe-7s-mail-open">

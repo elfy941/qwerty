@@ -7,6 +7,7 @@ package controllers;
 
 import dao.CompanyDAO;
 import dao.UserDAO;
+import entity.User;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -48,7 +49,8 @@ public class LoginController extends HttpServlet {
             if (request.getParameter("remember") != null) {
                 //here we should add cookie functionality
             } else {
-                request.getSession().setAttribute("user", username);
+                User u = udao.getUser(username);
+                request.getSession().setAttribute("user", u);
             }
 
             rd = request.getRequestDispatcher("user.jsp");
