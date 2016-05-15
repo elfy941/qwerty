@@ -106,7 +106,7 @@
                                             <p>Account</p>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Profile</a></li>
+                                            <li><a href="companyProfile.jsp">Profile</a></li>
                                             <li><a href="#">Another action</a></li>                                            
                                             <li class="divider"></li>
                                             <li><a href="http://localhost:8080/qwerty/LogOutController">Log Out</a></li>

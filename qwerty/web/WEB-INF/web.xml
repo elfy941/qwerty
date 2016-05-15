@@ -52,6 +52,10 @@
         <servlet-name>BackController</servlet-name>
         <servlet-class>controllers.BackController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CompanyProfileController</servlet-name>
+        <servlet-class>controllers.CompanyProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BundleController</servlet-name>
         <url-pattern>/BundleController</url-pattern>
@@ -99,6 +103,10 @@
     <servlet-mapping>
         <servlet-name>BackController</servlet-name>
         <url-pattern>/BackController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompanyProfileController</servlet-name>
+        <url-pattern>/CompanyProfileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -10,6 +10,7 @@ import java.util.List;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -38,7 +39,11 @@ public class CompanyDAO {
     }
 
     public boolean sameEmail(String email) {
-        return em.createNamedQuery("Company.findByEmailAddress").getResultList().isEmpty();
+        Query q = em.createNamedQuery("Company.findByEmailAddress");
+        q.setParameter("emailAddress", email);
+
+        return q.getResultList().isEmpty();
+
     }
 
     public boolean sameName(String name) {
@@ -57,7 +62,7 @@ public class CompanyDAO {
         }
         return false;
     }
-    
+
     public List<Company> returnAllCompanies() {
         return em.createNamedQuery("Company.findAll").getResultList();
     }

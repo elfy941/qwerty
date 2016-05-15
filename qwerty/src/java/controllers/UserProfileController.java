@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import dao.CompanyDAO;
 import dao.NotificationDAO;
 import dao.UserDAO;
 import entity.Notification;
@@ -29,6 +30,8 @@ public class UserProfileController extends HttpServlet {
     private UserDAO udao;
     @EJB
     private NotificationDAO ndao;
+    @EJB
+    private CompanyDAO cdao;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,7 +52,7 @@ public class UserProfileController extends HttpServlet {
         User u = (User) request.getSession().getAttribute("user");
         String message;
 
-        if ((email == null || !udao.sameEmail(email)) || email.equals(u.getEmailAddress())) {
+        if ((email == null || !cdao.sameEmail(email) || !udao.sameEmail(email)) || email.equals(u.getEmailAddress())) {
             
             
             if (name != null && !u.getFirstName().equals(name)) {
