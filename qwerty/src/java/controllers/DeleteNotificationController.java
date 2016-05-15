@@ -5,8 +5,12 @@
  */
 package controllers;
 
+import dao.NotificationDAO;
+import entity.Notification;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +21,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author victor
  */
-public class LogOutController extends HttpServlet {
+public class DeleteNotificationController extends HttpServlet {
+
+    @EJB
+    private NotificationDAO ndao;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,15 +37,17 @@ public class LogOutController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String id = request.getParameter("deleteNot");
+        Notification n = ndao.getNotification(Integer.parseInt(id));
+        ndao.removeNotification(n);
 
-        request.getSession().removeAttribute("user");
-        request.getSession().removeAttribute("company");
+        List notifications = (List) request.getSession().getAttribute("notif");
+        notifications.remove(n);
         request.getSession().removeAttribute("notif");
-        request.getSession().removeAttribute("cvs");
-
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        request.getSession().setAttribute("notif", notifications);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("messageTab.jsp");
         rd.forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

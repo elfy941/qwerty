@@ -4,16 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group/>
         <group name="SDM">
-            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/web/signUp.jsp</file>
+            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/src/java/entity/Notification.java</file>
+            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/src/java/dao/NotificationDAO.java</file>
             <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/web/WEB-INF/tags/menutag.tag</file>
+            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/web/js/register.js</file>
+            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/web/messageTab.jsp</file>
+            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/web/js/notification.js</file>
             <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/web/userProfile.jsp</file>
-            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/src/java/controllers/UserProfileController.java</file>
             <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/web/index.jsp</file>
-            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/web/login.jsp</file>
-            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/src/java/controllers/AjaxController.java</file>
-            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/src/java/dao/UserDAO.java</file>
-            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/src/java/entity/User.java</file>
-            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/src/java/controllers/UserPassword.java</file>
+            <file>file:/home/victor/ME/WAD/WADProj/qwerty/qwerty/src/java/controllers/NotificationController.java</file>
         </group>
     </open-files>
 </project-private>

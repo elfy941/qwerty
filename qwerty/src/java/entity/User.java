@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "User.findByEmailAddress", query = "SELECT u FROM User u WHERE u.emailAddress = :emailAddress"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
     @NamedQuery(name = "User.findByImage", query = "SELECT u FROM User u WHERE u.image = :image")})
-public class User implements Serializable { 
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Size(max = 45)
@@ -60,6 +60,17 @@ public class User implements Serializable {
     @Size(max = 45)
     @Column(name = "image")
     private String image;
+    @Size(max = 45)
+    @Column(name = "phone")
+    private String phone;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public User() {
     }
@@ -148,5 +159,5 @@ public class User implements Serializable {
     public String toString() {
         return "entity.User[ userName=" + userName + " ]";
     }
-    
+
 }

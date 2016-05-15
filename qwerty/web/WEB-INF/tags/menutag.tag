@@ -17,6 +17,7 @@
         <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
         <script src="js/classie.js"></script>
+        <!--<script src="js/notification.js"></script>-->
         <!--                     
                
 
@@ -70,9 +71,9 @@
                                 </c:if>
                                 <c:if test="${sessionScope.user != null }">
                                     <li>
-                                        <a href="#">
+                                        <a href="messageTab.jsp" onblur="test()">
                                             <i class="pe-7s-mail-open">
-                                                <span class="label">23</span>
+                                                <span class="label" id="notificationNo" ></span>
                                             </i>
                                             <p>Messages</p>
                                         </a>
@@ -84,10 +85,7 @@
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li><a href="userProfile.jsp">Profile</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something</a></li>
+                                            <li><a href="userCV.jsp">My CV</a></li>                                           
                                             <li class="divider"></li>
                                             <li><a href="http://localhost:8080/qwerty/LogOutController">Log Out</a></li>
                                         </ul>
@@ -108,11 +106,8 @@
                                             <p>Account</p>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something</a></li>
+                                            <li><a href="#">Profile</a></li>
+                                            <li><a href="#">Another action</a></li>                                            
                                             <li class="divider"></li>
                                             <li><a href="http://localhost:8080/qwerty/LogOutController">Log Out</a></li>
                                         </ul>

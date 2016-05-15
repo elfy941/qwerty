@@ -5,10 +5,13 @@
  */
 package controllers;
 
+import dao.NotificationDAO;
 import dao.UserDAO;
+import entity.Notification;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,6 +27,8 @@ public class UserProfileController extends HttpServlet {
 
     @EJB
     private UserDAO udao;
+    @EJB
+    private NotificationDAO ndao;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,6 +67,17 @@ public class UserProfileController extends HttpServlet {
             request.getSession().setAttribute("user", u);
             message = "Data has been changed";
             request.setAttribute("OK", message);
+            
+            Notification n = new Notification();
+            n.setMessage(message);
+            n.setUserName(u.getUserName());
+            n.setStatus("unread");
+            ndao.addNotifocation(n);
+            request.getSession().removeAttribute("notif");
+            List notifications = ndao.getUserNotifications(request.getSession().getAttribute("user").toString());
+            request.getSession().setAttribute("notif", notifications);
+           
+            
             
         } else {        
             message = "The e-mail is already in use";

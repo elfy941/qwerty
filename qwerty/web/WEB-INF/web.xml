@@ -32,6 +32,26 @@
         <servlet-name>UserPassword</servlet-name>
         <servlet-class>controllers.UserPassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NotificationController</servlet-name>
+        <servlet-class>controllers.NotificationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteNotificationController</servlet-name>
+        <servlet-class>controllers.DeleteNotificationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserCVController</servlet-name>
+        <servlet-class>controllers.UserCVController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CVController</servlet-name>
+        <servlet-class>controllers.CVController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BackController</servlet-name>
+        <servlet-class>controllers.BackController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BundleController</servlet-name>
         <url-pattern>/BundleController</url-pattern>
@@ -59,6 +79,26 @@
     <servlet-mapping>
         <servlet-name>UserPassword</servlet-name>
         <url-pattern>/UserPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotificationController</servlet-name>
+        <url-pattern>/NotificationController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteNotificationController</servlet-name>
+        <url-pattern>/DeleteNotificationController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserCVController</servlet-name>
+        <url-pattern>/UserCVController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CVController</servlet-name>
+        <url-pattern>/CVController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BackController</servlet-name>
+        <url-pattern>/BackController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

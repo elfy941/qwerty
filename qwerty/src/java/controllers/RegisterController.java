@@ -77,6 +77,7 @@ public class RegisterController extends HttpServlet {
             String email = (String) request.getParameter("email_address");
             String password = (String) request.getParameter("parola");
             String image = (String) request.getParameter("userImage");
+            String phone = (String) request.getParameter("phone");
 
             User u = new User();
             u.setFirstName(firstName);
@@ -86,6 +87,7 @@ public class RegisterController extends HttpServlet {
             u.setEmailAddress(email);
             u.setPassword(password);
             u.setImage(image);
+            u.setPhone(phone);
 
             udao.addUser(u);
 
