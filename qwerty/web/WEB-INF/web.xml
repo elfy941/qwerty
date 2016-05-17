@@ -16,6 +16,22 @@
         <servlet-name>AjaxController</servlet-name>
         <servlet-class>controllers.AjaxController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>controllers.LoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogOutController</servlet-name>
+        <servlet-class>controllers.LogOutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserProfileController</servlet-name>
+        <servlet-class>controllers.UserProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserPassword</servlet-name>
+        <servlet-class>controllers.UserPassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BundleController</servlet-name>
         <url-pattern>/BundleController</url-pattern>
@@ -27,6 +43,22 @@
     <servlet-mapping>
         <servlet-name>AjaxController</servlet-name>
         <url-pattern>/AjaxController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOutController</servlet-name>
+        <url-pattern>/LogOutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserProfileController</servlet-name>
+        <url-pattern>/UserProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserPassword</servlet-name>
+        <url-pattern>/UserPassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

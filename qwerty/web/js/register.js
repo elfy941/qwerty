@@ -51,7 +51,3 @@ function nameCompany(value) {
     });
 }
 
-
-
-
-

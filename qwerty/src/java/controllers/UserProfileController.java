@@ -5,11 +5,12 @@
  */
 package controllers;
 
-import dao.CompanyDAO;
 import dao.UserDAO;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +20,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author victor
  */
-public class AjaxController extends HttpServlet {
+public class UserProfileController extends HttpServlet {
 
     @EJB
     private UserDAO udao;
-    @EJB
-    private CompanyDAO cdao;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,36 +36,39 @@ public class AjaxController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.removeAttribute("NO");
+        request.removeAttribute("OK");
+        String name = request.getParameter("first_name");
+        String lastName = request.getParameter("last_name");
+        String email = request.getParameter("email_address");   
+        User u = (User) request.getSession().getAttribute("user");
+        String message;
 
-        if (request.getParameter("user_name") != null) {
-            if (udao.getUser(request.getParameter("user_name")) != null) {
-                response.getWriter().write("The username is already in use");
+        if ((email == null || !udao.sameEmail(email)) || email.equals(u.getEmailAddress())) {
+            
+            
+            if (name != null && !u.getFirstName().equals(name)) {
+                u.setFirstName(name);
             }
+            if (lastName != null && !u.getLastName().equals(lastName)) {
+                u.setLastName(lastName);
+            }           
+            if (email != null && !u.getEmailAddress().equals(email)) {
+                u.setEmailAddress(email);
+            }
+            
+            udao.editUser(u);
+            request.getSession().removeAttribute("user");
+            request.getSession().setAttribute("user", u);
+            message = "Data has been changed";
+            request.setAttribute("OK", message);
+            
+        } else {        
+            message = "The e-mail is already in use";
+            request.setAttribute("NO", message);
         }
-        
-        if (request.getParameter("companyUser") != null ){
-            if (cdao.getCompany(request.getParameter("companyUser")) != null){
-                response.getWriter().write("The username is already in use");
-            }            
-        } 
-        
-        if (request.getParameter("email_address") != null) {
-            if(udao.sameEmail(request.getParameter("email_address")) == true ) {
-                response.getWriter().write("The e-mail address is already in use");
-            }
-        }
-        
-        if (request.getParameter("companyMail") != null) {
-            if(cdao.sameEmail(request.getParameter("companyMail")) == true ) {
-                response.getWriter().write("The e-mail address is already in use");
-            }
-        }
-        
-        if (request.getParameter("companyName") != null) {
-            if(cdao.sameName(request.getParameter("companyName")) == true ) {
-                response.getWriter().write("The name of company is already in use");
-            }
-        }                
+        RequestDispatcher rd = request.getRequestDispatcher("userProfile.jsp");
+        rd.forward(request, response);
 
     }
 

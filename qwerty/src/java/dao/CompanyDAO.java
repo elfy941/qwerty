@@ -6,9 +6,8 @@
 package dao;
 
 import entity.Company;
-import javax.ejb.LocalBean;
+import java.util.List;
 import javax.ejb.Stateful;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,36 +15,51 @@ import javax.persistence.PersistenceContext;
  *
  * @author victor
  */
-
-@Stateless
-@LocalBean
+@Stateful
 public class CompanyDAO {
-    
+
     @PersistenceContext(unitName = "qwertyPU")
     private EntityManager em;
-    
-    public void addCompany(Company company){
+
+    public void addCompany(Company company) {
         em.persist(company);
     }
-    
+
     public void editCompany(Company company) {
         em.persist(company);
     }
-    
+
     public void deleteCompany(Company company) {
         em.remove(company);
     }
-    
+
     public Company getCompany(String company) {
-       return em.find(Company.class, company);
+        return em.find(Company.class, company);
     }
-    
+
     public boolean sameEmail(String email) {
-        return em.createNamedQuery("Company.findByEmailAddress") != null;
+        return em.createNamedQuery("Company.findByEmailAddress").getResultList().isEmpty();
     }
-    
+
     public boolean sameName(String name) {
-        return em.createNamedQuery("Company.findByCompanyName") != null; 
+        return em.createNamedQuery("Company.findByCompanyName").getResultList().isEmpty();
+    }
+
+    public boolean loginOk(String username, String password) {
+
+        Object c = em.find(Company.class, username);
+
+        if (c != null) {
+            Company company = (Company) c;
+            if (company.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
     }
     
+    public List<Company> returnAllCompanies() {
+        return em.createNamedQuery("Company.findAll").getResultList();
+    }
+
 }

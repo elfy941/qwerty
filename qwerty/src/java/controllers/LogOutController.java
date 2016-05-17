@@ -6,7 +6,7 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,29 +15,28 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author elfy
+ * @author victor
  */
-public class BundleController extends HttpServlet {
+public class LogOutController extends HttpServlet {
 
-    private ResourceBundle bundle ;
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
-       switch(request.getParameter("bundle")){
-           case "RO" :
-               request.getServletContext().removeAttribute("bundle");
-               bundle = ResourceBundle.getBundle("bundles.BundleRO_ro");
-               request.getServletContext().setAttribute("bundle", bundle);
-               break;
-           case "ENG" :
-               request.getServletContext().removeAttribute("bundle");
-               bundle = ResourceBundle.getBundle("bundles.BundleEN");
-               request.getServletContext().setAttribute("bundle", bundle);
-               break;
-       }
-       
+            throws ServletException, IOException {
+
+        request.getSession().removeAttribute("user");
+        request.getSession().removeAttribute("company");
+
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -5,39 +5,72 @@
  */
 package controllers;
 
+import dao.CompanyDAO;
+import dao.UserDAO;
+import entity.User;
 import java.io.IOException;
-import java.util.ResourceBundle;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author elfy
+ * @author victor
  */
-public class BundleController extends HttpServlet {
+public class LoginController extends HttpServlet {
 
-    private ResourceBundle bundle ;
-    
+    @EJB
+    private UserDAO udao;
+    @EJB
+    private CompanyDAO cdao;
+    private RequestDispatcher rd;
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
-       switch(request.getParameter("bundle")){
-           case "RO" :
-               request.getServletContext().removeAttribute("bundle");
-               bundle = ResourceBundle.getBundle("bundles.BundleRO_ro");
-               request.getServletContext().setAttribute("bundle", bundle);
-               break;
-           case "ENG" :
-               request.getServletContext().removeAttribute("bundle");
-               bundle = ResourceBundle.getBundle("bundles.BundleEN");
-               request.getServletContext().setAttribute("bundle", bundle);
-               break;
-       }
-       
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            throws ServletException, IOException {
+
+        String username = request.getParameter("user");
+        String password = request.getParameter("password");
+
+        if (udao.loginOk(username, password)) {
+
+            if (request.getParameter("remember") != null) {
+                //here we should add cookie functionality
+            } else {
+                User u = udao.getUser(username);
+                request.getSession().setAttribute("user", u);
+            }
+
+            rd = request.getRequestDispatcher("user.jsp");
+        } else if (cdao.loginOk(username, password)) {
+
+            if (request.getParameter("remember") != null) {
+                //cookies here also
+            } else {
+                request.getSession().setAttribute("company", username);
+            }
+            rd = request.getRequestDispatcher("company.jsp");
+
+        } else {
+            String ERROR = "Username or password are not valid";
+            request.setAttribute("ERROR", ERROR);
+            rd = request.getRequestDispatcher("login.jsp");
+        }
+
         rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -30,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Company.findByUserName", query = "SELECT c FROM Company c WHERE c.userName = :userName"),
     @NamedQuery(name = "Company.findByEmailAddress", query = "SELECT c FROM Company c WHERE c.emailAddress = :emailAddress"),
     @NamedQuery(name = "Company.findByPhoneNumber", query = "SELECT c FROM Company c WHERE c.phoneNumber = :phoneNumber"),
-    @NamedQuery(name = "Company.findByPassword", query = "SELECT c FROM Company c WHERE c.password = :password")})
+    @NamedQuery(name = "Company.findByPassword", query = "SELECT c FROM Company c WHERE c.password = :password"),
+    @NamedQuery(name = "Company.findByImage", query = "SELECT c FROM Company c WHERE c.image = :image")})
 public class Company implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,6 +54,13 @@ public class Company implements Serializable {
     @Size(max = 45)
     @Column(name = "Password")
     private String password;
+    @Size(max = 45)
+    @Column(name = "image")
+    private String image;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "Description")
+    private String description;
 
     public Company() {
     }
@@ -98,6 +107,22 @@ public class Company implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

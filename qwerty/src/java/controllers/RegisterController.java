@@ -11,6 +11,7 @@ import entity.Company;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,6 +35,8 @@ public class RegisterController extends HttpServlet {
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
+     *  
+     * 
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -48,6 +51,8 @@ public class RegisterController extends HttpServlet {
             String email = (String) request.getParameter("companyMail");
             String phone = (String) request.getParameter("companyPhone");
             String password = (String) request.getParameter("password");
+            String description = request.getParameter("description");
+            String imageUrl = request.getParameter("file_source");
 
             Company c = new Company();
             c.setCompanyName(companyName);
@@ -55,8 +60,15 @@ public class RegisterController extends HttpServlet {
             c.setEmailAddress(email);
             c.setPhoneNumber(phone);
             c.setPassword(password);
+            c.setDescription(description);
+            c.setImage(imageUrl);
 
-            cdao.addCompany(c);            
+            cdao.addCompany(c);
+            List<Company> tmp = (List<Company>) request.getServletContext().getAttribute("companies");
+            request.removeAttribute("companies");
+            tmp.add(c);
+            request.getServletContext().setAttribute("companies", tmp);
+            
         } else {
             String firstName = (String) request.getParameter("firstName");
             String lastName = (String) request.getParameter("lastName");
@@ -64,6 +76,7 @@ public class RegisterController extends HttpServlet {
             String userName = (String) request.getParameter("user_name");
             String email = (String) request.getParameter("email_address");
             String password = (String) request.getParameter("parola");
+            String image = (String) request.getParameter("userImage");
 
             User u = new User();
             u.setFirstName(firstName);
@@ -72,6 +85,7 @@ public class RegisterController extends HttpServlet {
             u.setUserName(userName);
             u.setEmailAddress(email);
             u.setPassword(password);
+            u.setImage(image);
 
             udao.addUser(u);
 
@@ -82,7 +96,7 @@ public class RegisterController extends HttpServlet {
         rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

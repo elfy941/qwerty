@@ -31,8 +31,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "User.findByGender", query = "SELECT u FROM User u WHERE u.gender = :gender"),
     @NamedQuery(name = "User.findByUserName", query = "SELECT u FROM User u WHERE u.userName = :userName"),
     @NamedQuery(name = "User.findByEmailAddress", query = "SELECT u FROM User u WHERE u.emailAddress = :emailAddress"),
-    @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
-public class User implements Serializable {
+    @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
+    @NamedQuery(name = "User.findByImage", query = "SELECT u FROM User u WHERE u.image = :image")})
+public class User implements Serializable { 
 
     private static final long serialVersionUID = 1L;
     @Size(max = 45)
@@ -56,6 +57,9 @@ public class User implements Serializable {
     @Size(max = 45)
     @Column(name = "Password")
     private String password;
+    @Size(max = 45)
+    @Column(name = "image")
+    private String image;
 
     public User() {
     }
@@ -110,6 +114,14 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
