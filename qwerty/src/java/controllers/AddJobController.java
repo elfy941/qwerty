@@ -5,8 +5,10 @@
  */
 package controllers;
 
+import dao.JobDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author victor
  */
-public class BackController extends HttpServlet {
-
-    private RequestDispatcher rd;
-
+public class AddJobController extends HttpServlet {
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,14 +33,10 @@ public class BackController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        if (request.getParameter("job") != null) {
-            rd = request.getRequestDispatcher("job.jsp");
-        } else {
-            rd = request.getRequestDispatcher("CV.jsp");
-        }
-
+       
+        RequestDispatcher rd = request.getRequestDispatcher("job.jsp");
         rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
