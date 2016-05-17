@@ -17,6 +17,8 @@
         <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
         <script src="js/classie.js"></script>
+        <script src="js/ct-navbar.js"></script>
+        <!--<script src="js/notification.js"></script>-->
         <!--                     
                
 
@@ -41,13 +43,13 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-<!--                            <a class="navbar-brand navbar-brand-logo" href="index.jsp">
-                                <div class="logo">
-                                    <img src="img/logo.gif">
-
-                                </div>
-                                <div class="brand"> Qwerty </div>
-                            </a>-->
+                            <!--                            <a class="navbar-brand navbar-brand-logo" href="index.jsp">
+                                                            <div class="logo">
+                                                                <img src="img/logo.gif">
+                            
+                                                            </div>
+                                                            <div class="brand"> Qwerty </div>
+                                                        </a>-->
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -70,9 +72,9 @@
                                 </c:if>
                                 <c:if test="${sessionScope.user != null }">
                                     <li>
-                                        <a href="#">
+                                        <a href="messageTab.jsp" onblur="test()">
                                             <i class="pe-7s-mail-open">
-                                                <span class="label">23</span>
+                                                <span class="label" id="notificationNo" ></span>
                                             </i>
                                             <p>Messages</p>
                                         </a>
@@ -84,10 +86,7 @@
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li><a href="userProfile.jsp">Profile</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something</a></li>
+                                            <li><a href="userCV.jsp">My CV</a></li>                                           
                                             <li class="divider"></li>
                                             <li><a href="http://localhost:8080/qwerty/LogOutController">Log Out</a></li>
                                         </ul>
@@ -108,11 +107,8 @@
                                             <p>Account</p>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Action</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something</a></li>
-                                            <li><a href="#">Another action</a></li>
-                                            <li><a href="#">Something</a></li>
+                                            <li><a href="companyProfile.jsp">Profile</a></li>
+                                            <li><a href="companyJobs.jsp">Our Jobs</a></li>                                            
                                             <li class="divider"></li>
                                             <li><a href="http://localhost:8080/qwerty/LogOutController">Log Out</a></li>
                                         </ul>
@@ -140,7 +136,8 @@
             </div><!--  end navbar -->
 
         </div> <!-- end menu-dropdown -->
-
-        <jsp:invoke fragment="content" />
+        <div class="main">
+            <jsp:invoke fragment="content" />
+        </div>
     </body>
 </html>

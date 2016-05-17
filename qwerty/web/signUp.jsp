@@ -125,7 +125,10 @@
                                                    name="email_address" onblur="userMail(this.value);" required="true">
                                             <nav id="userMail" style="color:red"></nav>
                                         </div>
-
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Phone"
+                                                   name="phone" required="true">
+                                        </div>                  
                                         <div class="form-group">
                                             <input type="password" class="form-control" placeholder="${applicationScope.bundle.getString("parola")}"
                                                    name="parola" required="true">

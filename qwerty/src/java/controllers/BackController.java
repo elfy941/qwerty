@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author victor
  */
-public class LogOutController extends HttpServlet {
+public class BackController extends HttpServlet {
+
+    private RequestDispatcher rd;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,14 +33,13 @@ public class LogOutController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.getSession().removeAttribute("user");
-        request.getSession().removeAttribute("company");
-        request.getSession().removeAttribute("notif");
-        request.getSession().removeAttribute("cvs");
+        if (request.getParameter("job") != null) {
+            rd = request.getRequestDispatcher("job.jsp");
+        } else {
+            rd = request.getRequestDispatcher("CV.jsp");
+        }
 
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

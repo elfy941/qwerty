@@ -32,6 +32,42 @@
         <servlet-name>UserPassword</servlet-name>
         <servlet-class>controllers.UserPassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>NotificationController</servlet-name>
+        <servlet-class>controllers.NotificationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteNotificationController</servlet-name>
+        <servlet-class>controllers.DeleteNotificationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserCVController</servlet-name>
+        <servlet-class>controllers.UserCVController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CVController</servlet-name>
+        <servlet-class>controllers.CVController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BackController</servlet-name>
+        <servlet-class>controllers.BackController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CompanyProfileController</servlet-name>
+        <servlet-class>controllers.CompanyProfileController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JobDAO</servlet-name>
+        <servlet-class>dao.JobDAO</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddJobController</servlet-name>
+        <servlet-class>controllers.AddJobController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JobController</servlet-name>
+        <servlet-class>controllers.JobController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BundleController</servlet-name>
         <url-pattern>/BundleController</url-pattern>
@@ -59,6 +95,42 @@
     <servlet-mapping>
         <servlet-name>UserPassword</servlet-name>
         <url-pattern>/UserPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NotificationController</servlet-name>
+        <url-pattern>/NotificationController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteNotificationController</servlet-name>
+        <url-pattern>/DeleteNotificationController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserCVController</servlet-name>
+        <url-pattern>/UserCVController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CVController</servlet-name>
+        <url-pattern>/CVController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BackController</servlet-name>
+        <url-pattern>/BackController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompanyProfileController</servlet-name>
+        <url-pattern>/CompanyProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JobDAO</servlet-name>
+        <url-pattern>/JobDAO</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddJobController</servlet-name>
+        <url-pattern>/AddJobController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JobController</servlet-name>
+        <url-pattern>/JobController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

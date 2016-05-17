@@ -5,9 +5,14 @@
  */
 package controllers;
 
+import dao.NotificationDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import javax.ejb.EJB;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +22,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author victor
  */
-public class LogOutController extends HttpServlet {
+public class NotificationController extends HttpServlet {
+
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * methods
      *
      * @param request servlet request
      * @param response servlet response
@@ -30,15 +37,14 @@ public class LogOutController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        request.getSession().removeAttribute("user");
-        request.getSession().removeAttribute("company");
-        request.getSession().removeAttribute("notif");
-        request.getSession().removeAttribute("cvs");
-
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        rd.forward(request, response);
-
+        
+//        Query q =  em.createNamedQuery("Notification.findByStatusAndUsername");
+//        q.setParameter("userName", request.getSession().getAttribute("user"));
+//        q.setParameter("status", "unread");
+//        
+//        int no = q.getResultList().size();
+//        response.getWriter().write(no);
+        //start ajax after login
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

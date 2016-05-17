@@ -6,9 +6,13 @@
 package controllers;
 
 import dao.CompanyDAO;
+import dao.CvDAO;
+import dao.NotificationDAO;
 import dao.UserDAO;
+import entity.Company;
 import entity.User;
 import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,6 +31,10 @@ public class LoginController extends HttpServlet {
     private UserDAO udao;
     @EJB
     private CompanyDAO cdao;
+    @EJB
+    private NotificationDAO ndao;
+    @EJB
+    private CvDAO cvdao;
     private RequestDispatcher rd;
 
     /**
@@ -51,6 +59,10 @@ public class LoginController extends HttpServlet {
             } else {
                 User u = udao.getUser(username);
                 request.getSession().setAttribute("user", u);
+                List notifications = ndao.getUserNotifications(username);
+                request.getSession().setAttribute("notif", notifications);
+                List cvs = cvdao.getUserCvs(username);
+                request.getSession().setAttribute("cvs", cvs);
             }
 
             rd = request.getRequestDispatcher("user.jsp");
@@ -59,7 +71,8 @@ public class LoginController extends HttpServlet {
             if (request.getParameter("remember") != null) {
                 //cookies here also
             } else {
-                request.getSession().setAttribute("company", username);
+                Company c = cdao.getCompany(username);
+                request.getSession().setAttribute("company", c);
             }
             rd = request.getRequestDispatcher("company.jsp");
 
