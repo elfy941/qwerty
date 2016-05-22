@@ -21,3 +21,4 @@ The platform will be splited into two parts , a user part (the one that can appl
 		
 		Maria Ghicajanu
 		Victor Măchiţă
+		Octavian Alexandru
