@@ -1,0 +1,17 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 22, 2016, 1:20:00 PM
+    Author     : victor
+*/
+
+.navbar .navbar-search .dropdown-menu { min-width: 25px; }
+.dropdown-menu .label-icon { margin-left: 5px; }
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}

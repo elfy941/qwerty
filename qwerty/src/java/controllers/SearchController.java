@@ -6,14 +6,10 @@
 package controllers;
 
 import dao.JobDAO;
-import entity.Company;
-import entity.Job;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
+import java.util.List;
 import javax.ejb.EJB;
-import javax.json.Json;
-import javax.json.JsonObject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author victor
  */
-public class JobController extends HttpServlet {
-
+public class SearchController extends HttpServlet {
+    
     @EJB
     private JobDAO jdao;
 
@@ -40,47 +36,15 @@ public class JobController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String add = request.getParameter("add");
-        String preview = request.getParameter("preview");
-        String job_description = request.getParameter("job_description");
-        String work_experience = request.getParameter("work_experience");
-        String key_skills = request.getParameter("key_skills");
-        String education = request.getParameter("education");
-        String name = request.getParameter("jobName");
-        RequestDispatcher rd;
-        Company c = (Company) request.getSession().getAttribute("company");
-
-        request.getSession().removeAttribute("job_description");
-        request.getSession().removeAttribute("work_experience");
-        request.getSession().removeAttribute("key_skills");
-        request.getSession().removeAttribute("education");
-        request.getSession().removeAttribute("name");
-        request.getSession().removeAttribute("companyname");
-
-        if (add != null) {
-            Job job = new Job();
-            job.setDescription(job_description);
-            job.setEducation(education);
-            job.setKeySkills(key_skills);
-            job.setExperienceNecesary(work_experience);
-            job.setCompany(c.getCompanyName());
-            job.setName(name);            
-
-            jdao.addJob(job);
-            rd = request.getRequestDispatcher("companyJobs.jsp");
-        } else {
-            rd = request.getRequestDispatcher("jobPreview.jsp");
-            request.getSession().setAttribute("job_description", job_description);
-            request.getSession().setAttribute("work_experience", work_experience);
-            request.getSession().setAttribute("key_skills", key_skills);
-            request.getSession().setAttribute("education", education);
-            request.getSession().setAttribute("name", name);
-            request.getSession().setAttribute("companyname", c.getCompanyName());
-
-        }
-
+        
+        request.getSession().removeAttribute("searchResult");
+        String search = request.getParameter("search");
+        
+        List x = jdao.searchOption(search);
+        request.getSession().setAttribute("searchResult", x);
+        RequestDispatcher rd = request.getRequestDispatcher("user.jsp");
         rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

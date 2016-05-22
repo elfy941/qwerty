@@ -44,5 +44,10 @@ public class CvDAO {
         
         return q.getResultList();
     }
+    
+    public Cv findCv(String id) {
+        
+        return em.find(Cv.class, Integer.parseInt(id));
+    }
 
 }

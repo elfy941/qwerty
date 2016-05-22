@@ -8,7 +8,8 @@
         <link href="css/bootstrap.css" rel="stylesheet" />
         <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
         <link href="css/ct-navbar.css" rel="stylesheet" />
-        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">       
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+       
 
         <!--Place common js here-->
         <script src="js/jquery.js"></script>
@@ -18,6 +19,8 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
         <script src="js/classie.js"></script>
         <script src="js/ct-navbar.js"></script>
+        
+
         <!--<script src="js/notification.js"></script>-->
         <!--                     
                
@@ -85,12 +88,14 @@
                                             <p>Account</p>
                                         </a>
                                         <ul class="dropdown-menu">
+                                            <li><a href="user.jsp">Home</a></li>
                                             <li><a href="userProfile.jsp">Profile</a></li>
-                                            <li><a href="userCV.jsp">My CV</a></li>                                           
+                                            <li><a href="userCV.jsp">My CV</a></li>                                            
                                             <li class="divider"></li>
                                             <li><a href="http://localhost:8080/qwerty/LogOutController">Log Out</a></li>
                                         </ul>
                                     </li>
+                                   
                                 </c:if>
                                 <c:if test="${sessionScope.company != null}">
                                     <li>
@@ -136,8 +141,14 @@
             </div><!--  end navbar -->
 
         </div> <!-- end menu-dropdown -->
+
+
+
+
         <div class="main">
+
             <jsp:invoke fragment="content" />
         </div>
+
     </body>
 </html>

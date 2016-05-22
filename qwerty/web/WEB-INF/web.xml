@@ -68,6 +68,18 @@
         <servlet-name>JobController</servlet-name>
         <servlet-class>controllers.JobController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchController</servlet-name>
+        <servlet-class>controllers.SearchController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApplyController</servlet-name>
+        <servlet-class>controllers.ApplyController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChooseCvController</servlet-name>
+        <servlet-class>controllers.ChooseCvController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BundleController</servlet-name>
         <url-pattern>/BundleController</url-pattern>
@@ -131,6 +143,18 @@
     <servlet-mapping>
         <servlet-name>JobController</servlet-name>
         <url-pattern>/JobController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchController</servlet-name>
+        <url-pattern>/SearchController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApplyController</servlet-name>
+        <url-pattern>/ApplyController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChooseCvController</servlet-name>
+        <url-pattern>/ChooseCvController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

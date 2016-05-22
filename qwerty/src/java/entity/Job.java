@@ -33,7 +33,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Job.findByCompany", query = "SELECT j FROM Job j WHERE j.company = :company"),
     @NamedQuery(name = "Job.findByExperienceNecesary", query = "SELECT j FROM Job j WHERE j.experienceNecesary = :experienceNecesary"),
     @NamedQuery(name = "Job.findByKeySkills", query = "SELECT j FROM Job j WHERE j.keySkills = :keySkills"),
-    @NamedQuery(name = "Job.findByEducation", query = "SELECT j FROM Job j WHERE j.education = :education")})
+    @NamedQuery(name = "Job.findByEducation", query = "SELECT j FROM Job j WHERE j.education = :education"),
+    @NamedQuery(name = "Job.findBySearch", query = "SELECT j FROM Job j WHERE j.name LIKE :name OR j.description LIKE :name OR j.education LIKE :name OR j.experienceNecesary LIKE :name OR j.keySkills LIKE :name"),
+    @NamedQuery(name = "Job.findJob", query = "SELECT j FROM Job j WHERE j.name = :name AND j.description = :description AND j.company = :company AND j.experienceNecesary = :exp AND j.keySkills = :skills AND j.education = :education ")
+})
 public class Job implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,10 +54,6 @@ public class Job implements Serializable {
     @Size(max = 45)
     @Column(name = "company")
     private String company;
-    @Lob
-    @Size(max = 2147483647)
-    @Column(name = "appliences")
-    private String appliences;
     @Size(max = 45)
     @Column(name = "experienceNecesary")
     private String experienceNecesary;
@@ -102,14 +101,6 @@ public class Job implements Serializable {
 
     public void setCompany(String company) {
         this.company = company;
-    }
-
-    public String getAppliences() {
-        return appliences;
-    }
-
-    public void setAppliences(String appliences) {
-        this.appliences = appliences;
     }
 
     public String getExperienceNecesary() {
@@ -160,5 +151,5 @@ public class Job implements Serializable {
     public String toString() {
         return "entity.Job[ id=" + id + " ]";
     }
-    
+
 }
